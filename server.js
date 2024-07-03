@@ -3,12 +3,9 @@ import  dbConnect  from "./config/dbconnect.js";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
-import userRouter  from './routes/user.routes.js'
-import productRouter from './routes/product.routes.js'
-import CategoryRouter from './routes/category.routes.js'
-import Order from  './routes/orderss.routes.js'
-import Cart from './routes/cart.routes.js'
-import Review from './routes/review.routes.js'
+
+import captureRoutes from "./routes/captureRoutes.js";
+
 
 
 
@@ -21,12 +18,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.json());
 
-app.use("/api/v1/users", userRouter);
-app.use("/api/v1/users", productRouter)
-app.use("/api/v1/users", CategoryRouter);
-app.use("/api/v1/users", Order);
-app.use("/api/v1/users", Cart);
-app.use("/api/v1/users", Review);
+
+
+app.use("/api/v1/capture", captureRoutes);
 
 
 const PORT = 8000;
