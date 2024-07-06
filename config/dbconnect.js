@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const dbConnect =  ()=>{
 try {
     const connection = mongoose.connect(
-      "mongodb+srv://sonukr24082001:Abhi%40123@cluster0.hamldut.mongodb.net/fugitiv"
+      "mongodb+srv://sonukr24082001:Abhi%40123@cluster0.hamldut.mongodb.net/Police"
     );
    if(connection){
     console.log("DB connection established")
