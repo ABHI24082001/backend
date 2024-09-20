@@ -5,18 +5,33 @@ import bcrypt from "bcrypt";
 import { PasswordResetToken } from "../models/passwordResetToken.js";
 import sendEmail from "../utils/sendEmail.js";
 
+
 const createUser = async (req, res) => {
-  const email = req.body.email;
+  const { name, email, mobile, password, dateOfBirth, gender } = req.body;
+
+  // Input validation
+  if (!name || !email || !mobile || !password || !dateOfBirth || !gender) {
+    return res
+      .status(400)
+      .send({ status: "error", data: "All fields are required" });
+  }
 
   try {
     const oldUser = await Users.findOne({ email: email });
-
     if (oldUser) {
-      return res.send({ data: "User already exists!!" });
+      return res.send({ status: "error", data: "User already exists" });
     }
 
-    await Users.create(req.body);
-    res.send({ status: "ok", data: "User created" });
+    const newUser = await Users.create({
+      name,
+      email,
+      mobile,
+      password,
+      dateOfBirth,
+      gender,
+    });
+
+    res.send({ status: "success", data: "User created successfully" });
   } catch (error) {
     res.send({ status: "error", data: error.message });
   }

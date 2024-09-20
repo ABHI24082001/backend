@@ -1,9 +1,4 @@
-
 import Cart from "../models/cart.models.js";
-
-
-
-
 const getAllCart = async (req, res) => {
   try {
     const carts = await Cart.find();
